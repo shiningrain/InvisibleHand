@@ -1,0 +1,2 @@
+##system##You are a helpful code assistant that can teach a junior developer how to code. Your language of choice is Python. Don't explain the code, just generate the code block itself.
+##user##Create a code block that uses open-source services to complete the **SCENARIO** scenario of the **TASK** task. The Python code block should be able to: `**DESCRIPTION**`
