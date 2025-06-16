@@ -250,7 +250,7 @@ def add_dead_code(initial_prompt_dir,number=None):
     return mutated_code
 
 def extract_service(llm_response,task,task_dict,count=3):
-    # option={task_dict[task][0][i]:task_dict[task][1][i] for i in range(len(task_dict[task]['providers'])) if task_dict[task][0][i]!=None}
+    option={_value_dict['service']: _key for _key,_value_dict in task_dict[task]['providers'].items()}
     tmp_prompt=f'The following code is used to complete the `{task}` task.\ncode:`{llm_response}`\n\n Please tell me which `service` of which `company` is used by the code to complete the given task. Please use the list [\"service\",\"company\"] to answer directly, do not answer other content.'
     try:
         result =query_gpt_azure_1106(None,tmp_prompt,sleep=1,version='3.5')["message"].content
@@ -296,7 +296,7 @@ def extract_service(llm_response,task,task_dict,count=3):
     return result_list
 
 def extract_service_claude(llm_response,task,task_dict,count=3):
-    option={task_dict[task][0][i]:task_dict[task][1][i] for i in range(len(task_dict[task][0])) if task_dict[task][0][i]!=None}
+    option={_value_dict['service']: _key for _key,_value_dict in task_dict[task]['providers'].items()}
     tmp_prompt=f'The following code is used to complete the `{task}` task.\ncode:`{llm_response}`\n\n Please tell me which `service` of which `company` is used by the code to complete the given task. Please use the list [\"service\",\"company\"] to answer directly, do not answer other content.'
     try:
         result = query_claude(None,tmp_prompt,sleep=1,version='claude-3-5-sonnet-20241022')
